@@ -1,6 +1,13 @@
 service : {
   add: (float64, float64) -> (float64);
+  clearHistory: () -> ();
   divide: (float64, float64) -> (opt float64);
+  getHistory: () -> (vec record {
+                           float64;
+                           float64;
+                           text;
+                           float64;
+                         }) query;
   multiply: (float64, float64) -> (float64);
   subtract: (float64, float64) -> (float64);
 }

@@ -4,7 +4,9 @@ import type { IDL } from '@dfinity/candid';
 
 export interface _SERVICE {
   'add' : ActorMethod<[number, number], number>,
+  'clearHistory' : ActorMethod<[], undefined>,
   'divide' : ActorMethod<[number, number], [] | [number]>,
+  'getHistory' : ActorMethod<[], Array<[number, number, string, number]>>,
   'multiply' : ActorMethod<[number, number], number>,
   'subtract' : ActorMethod<[number, number], number>,
 }

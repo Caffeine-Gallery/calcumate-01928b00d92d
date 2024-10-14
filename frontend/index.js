@@ -1,6 +1,6 @@
 import { backend } from 'declarations/backend';
 
-window.calculate = async function(operation) {
+async function calculate(operation) {
     const num1 = parseFloat(document.getElementById('num1').value);
     const num2 = parseFloat(document.getElementById('num2').value);
     const resultElement = document.getElementById('result');
@@ -31,7 +31,45 @@ window.calculate = async function(operation) {
                 break;
         }
         resultElement.textContent = `Result: ${result}`;
+        updateHistory();
     } catch (error) {
         resultElement.textContent = `Error: ${error.message}`;
     }
-};
+}
+
+async function updateHistory() {
+    const historyList = document.getElementById('historyList');
+    const history = await backend.getHistory();
+    historyList.innerHTML = '';
+    history.forEach(([x, y, op, result]) => {
+        const li = document.createElement('li');
+        li.textContent = `${x} ${op} ${y} = ${result}`;
+        historyList.appendChild(li);
+    });
+}
+
+async function clearHistory() {
+    await backend.clearHistory();
+    updateHistory();
+}
+
+function shareResult() {
+    const result = document.getElementById('result').textContent;
+    if (navigator.share) {
+        navigator.share({
+            title: 'Calculator Result',
+            text: result
+        }).then(() => {
+            console.log('Thanks for sharing!');
+        }).catch(console.error);
+    } else {
+        alert('Web Share API not supported in your browser');
+    }
+}
+
+window.calculate = calculate;
+window.clearHistory = clearHistory;
+window.shareResult = shareResult;
+
+// Initial history update
+updateHistory();

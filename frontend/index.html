@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator</title>
+    <title>Modern Calculator</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-    <div class="calculator">
-        <h1>Simple Calculator</h1>
-        <input type="number" id="num1" placeholder="Enter first number">
-        <input type="number" id="num2" placeholder="Enter second number">
-        <div class="buttons">
-            <button onclick="calculate('add')">+</button>
-            <button onclick="calculate('subtract')">-</button>
-            <button onclick="calculate('multiply')">*</button>
-            <button onclick="calculate('divide')">/</button>
+    <div class="container">
+        <div class="calculator">
+            <h1>Modern Calculator</h1>
+            <div class="input-group">
+                <input type="number" id="num1" placeholder="Enter first number">
+                <input type="number" id="num2" placeholder="Enter second number">
+            </div>
+            <div class="buttons">
+                <button onclick="calculate('add')">+</button>
+                <button onclick="calculate('subtract')">-</button>
+                <button onclick="calculate('multiply')">×</button>
+                <button onclick="calculate('divide')">÷</button>
+            </div>
+            <div id="result"></div>
+            <button id="shareBtn" onclick="shareResult()"><i class="fas fa-share-alt"></i> Share Result</button>
         </div>
-        <div id="result"></div>
+        <div class="history">
+            <h2>Calculation History</h2>
+            <ul id="historyList"></ul>
+            <button id="clearHistoryBtn" onclick="clearHistory()">Clear History</button>
+        </div>
     </div>
     <script type="module" src="index.js"></script>
 </body>
